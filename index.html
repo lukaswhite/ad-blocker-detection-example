@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ad-blocker Detection Demo</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="adblock-nag alert alert-info" role="alert" style="display:none;">
+        <p>It looks like you're using an ad-blocker.</p>
+      </div>
+
+      <div class="pub_728x90">
+        <div class="well">
+          <p>This is a banner advert.</p>
+        </div>
+      </div>
+
+      <header>
+        <h1>Ad-blocker Detection Demo</h1>
+        <p class="lead">This simple demo demonstrates how you might detect ad-blocks, displaying a message for example.</p>
+      </header>
+
+      <div class="row">
+
+        <main class="col-md-9">
+          <p>This is the main content area. There is an area above the header for banner adverts, as well as a right-hand column (or below on small screens) also designed to display adverts.</p>
+        </main>
+
+        <aside class="col-md-3">
+          <div class="ad-right">
+            <div class="well">
+              <p>This is an area which contains adverts.</p>
+            </div>
+          </div>
+        </main>
+
+      </div>
+
+    </div><!-- /.container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/bower_components/blockadblock/blockadblock.js"></script>
+    <script>
+      // Function called if AdBlock is not detected
+      function adBlockNotDetected() {
+        console.log( 'AdBlock is not enabled' );
+      }
+      // Function called if AdBlock is detected
+      function adBlockDetected() {
+        
+        $( '.adblock-nag' ).slideDown( 'slow' );
+
+        $( '<div>' )
+          .html(' <p>Please support us by turning off your ad blocker' )
+          .addClass( 'alert' )
+          .addClass( 'alert-info' )
+          .insertBefore('.ad-right');
+
+      }
+      
+      if ( typeof blockAdBlock === 'undefined' ) {
+        
+        adBlockDetected();
+
+      } else {
+
+        blockAdBlock.onDetected( adBlockDetected );
+        blockAdBlock.onNotDetected( adBlockNotDetected );          
+
+      }
+
+    </script>
+    
+  </body>
+</html>

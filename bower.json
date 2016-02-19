@@ -1,0 +1,22 @@
+{
+  "name": "ad-block-detection-demo",
+  "authors": [
+    "lukaswhite <hello@lukaswhite.com>"
+  ],
+  "description": "A simple demo which shows how to detect ad-blockers.",
+  "keywords": [
+    "ad-blockers"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "blockadblock": "~3.2.0"
+  }
+}
